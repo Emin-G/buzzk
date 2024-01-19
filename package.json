@@ -2,15 +2,18 @@
   "name": "buzzk",
   "displayName": "BUZZK",
   "version": "1.0.0",
-  "description": "뿌지직 (BUZZK) - 더 나은 치지직 (CHZZK)을 위한 비공식 챗봇 라이브러리.",
-  "main": "index.js",
+  "description": "뿌지직 (BUZZK) - 치지직(CHZZK) 챗봇을 더욱 쉽게 개발할 수 있도록 돕는 비공식 라이브러리.",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Emin-G",
+  "author": {
+    "name": "Emin-G",
+    "email": "dev.mingowo@gmail.com"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -19,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/Emin-G/buzzk/issues"
   },
-  "homepage": "https://github.com/Emin-G/buzzk#readme"
+  "homepage": "https://github.com/Emin-G/buzzk",
+  "keywords": ["chzzk", "buzzk", "치지직", "뿌지직"]
 }

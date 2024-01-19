@@ -17,9 +17,8 @@
 
 ##  설치
 
-1. 이 레포지토리를 다운받아 프로젝트 폴더 안에 넣어주세요.
-2. 폴더 이름을 `buzzk-master` 에서 `buzzk` 으로 변경해주세요.
-3.  `const buzzk = require("./buzzk");`
+1. `npm install buzzk`
+2. `const buzzk = require("buzzk");`
 
 ##  빠른. 시작.
 
