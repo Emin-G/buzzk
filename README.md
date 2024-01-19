@@ -46,7 +46,8 @@
             for (let o in data) {
                 console.log(data[o].message);
 
-		if (data[o].message === "!ping") await chat.send("pong!"); //채팅 보내기 (login 후에만 가능)
+		if (data[o].message === "!ping") await chat.send("pong!");
+  		//채팅 보내기 (login 후에만 가능)
             }
         });
         
