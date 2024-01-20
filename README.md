@@ -22,7 +22,7 @@
 
 ##  빠른. 시작.
 
-    const buzzk = require("./buzzk");
+    const buzzk = require("buzzk");
     buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
     
     const buzzkChat = buzzk.chat;
