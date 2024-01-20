@@ -15,6 +15,15 @@
 
 ---
 
+##  업데이트 내역
+
+ - 팔로우 / 언팔로우 기능 추가
+ - live.getLiveDetail의 Return 값에 chatLimit 추가 (팔로우 대상 채팅 등...)
+ - 폴링 함수 추가 (chatID 변경 감지)
+ - API 호출 실패 시 오류 핸들링 (Return true / null)
+ - chat.disconnect 함수 보완
+ - 버전 체크 함수 추가
+
 ##  설치
 
 1. `npm install buzzk`
@@ -84,6 +93,12 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 </details>
 
+    await buzzk.channel.followChannel("channelID 값");
+
+>
+
+    await buzzk.channel.unFollowChannel("channelID 값");
+
 ---
 
 > live
@@ -98,6 +113,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 	 - channelID
 	 - channel
 	 - chatID
+	 - chatLimit //팔로워 전용 채팅 등...
 	 - userCount
 		 - now
 		 - total
@@ -188,4 +204,4 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 > 
 
-    chat.disconnect(); //채팅창 연결 끊기
+    await chat.disconnect(); //채팅창 연결 끊기
