@@ -17,6 +17,10 @@
 
 ##  업데이트 내역
 
+ - 자동완성 기능 지원
+
+>
+
  - 팔로우 / 언팔로우 기능 추가
  - live.getLiveDetail의 Return 값에 chatLimit 추가 (팔로우 대상 채팅 등...)
  - 폴링 함수 추가 (chatID 변경 감지)
