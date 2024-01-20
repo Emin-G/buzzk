@@ -54,7 +54,7 @@
         let recentChat = await chat.getRecentChat(); //최근 채팅 가져오기 (기본값 50개)
         console.log(recentChat);
     
-        chat.onMessage((data) => { //채팅이 왔을 때
+        chat.onMessage(async (data) => { //채팅이 왔을 때
             for (let o in data) {
                 console.log(data[o].message);
 
