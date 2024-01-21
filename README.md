@@ -1,9 +1,9 @@
-<img  src="https://github.com/Emin-G/Img/blob/main/buzzk/buzzk_pamplet.gif?raw=true" alt="BuzzkThumb" width="100%">
+<img src="https://github.com/Emin-G/Img/blob/main/buzzk/buzzk_pamplet.gif?raw=true" alt="BuzzkThumb" width="100%">
 
 #  뿌지직
 
 <p align="center">
-<img  src="https://github.com/Emin-G/Img/blob/main/buzzk/buzzk_favi-min.png?raw=true" alt="BUZZK" width="30%">
+<img src="https://github.com/Emin-G/Img/blob/main/buzzk/buzzk_favi-min.png?raw=true" alt="BUZZK" width="30%">
 </p>
 
 <p align="center">
@@ -15,12 +15,20 @@
 
 ---
 
-##  업데이트 내역
+##  📖 업데이트 내역
 
- - 자동완성 기능 지원
+ - 함수 이름 수정
+
+	**하단의 1.3.0 마이그레이션 가이드 참고**
 
 >
 
+ - channelID로 채널 정보 가져오기 함수 추가
+ - ws 라이브러리 종속성 추가
+
+>
+
+ - 자동완성 기능 지원
  - 팔로우 / 언팔로우 기능 추가
  - live.getLiveDetail의 Return 값에 chatLimit 추가 (팔로우 대상 채팅 등...)
  - 폴링 함수 추가 (chatID 변경 감지)
@@ -28,12 +36,75 @@
  - chat.disconnect 함수 보완
  - 버전 체크 함수 추가
 
-##  설치
+##  ✒️ 마이그레이션 가이드 (v.1.3.0)
+
+<details>
+<summary>펼쳐보기</summary>
+
+	buzzk.channel
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.channel.getChannel |
+|--|--|
+|  | buzzk.channel.search |
+
+---
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.channel.followChannel |
+|--|--|
+|  | buzzk.channel.follow |
+
+---
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.channel.unFollowChannel |
+|--|--|
+|  | buzzk.channel.unFollow |
+
+---
+
+	buzzk.live
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.live.getLiveDetail |
+|--|--|
+|  | buzzk.live.getDetail |
+
+---
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.live.getLiveStatus |
+|--|--|
+|  | buzzk.live.getStatus |
+
+---
+
+	buzzk.live.getDetail (getLiveDetail)
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | (return).channel.channelName |
+|--|--|
+|  | (return).channel.name |
+
+---
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | (return).channel.channelImageUrl |
+|--|--|
+|  | (return).channel.imageURL |
+
+---
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | (return).channel.channelId |
+|--|--|
+
+---
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | (return).channel.verifiedMark |
+|--|--|
+
+</details>
+
+##  👋 설치
 
 1. `npm install buzzk`
 2. `const buzzk = require("buzzk");`
 
-##  빠른. 시작.
+##  🔥 빠른. 시작.
 
     const buzzk = require("buzzk");
     buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
@@ -42,11 +113,11 @@
     
     async function test () {
     
-        let chSearch = await buzzk.channel.getChannel("녹두로로"); //채널 검색
+        let chSearch = await buzzk.channel.search("녹두로로"); //채널 검색
         
         let channel = chSearch[0]; //검색 결과 첫번째 채널
     
-        const lvDetail = await buzzk.live.getLiveDetail(channel.channelID); //현재 방송 정보
+        const lvDetail = await buzzk.live.getDetail(channel.channelID); //현재 방송 정보
     
         let chat = new buzzkChat(channel.channelID);
         await chat.connect(); //채팅창 연결
@@ -67,9 +138,9 @@
     
     test();
 
-##  사용법
+##  🎀 사용법
 
-> login
+###  login
 
     buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
 
@@ -79,13 +150,34 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 ---
 
-> channel
+###  channel
 
-    let chSearch = await buzzk.channel.getChannel("녹두로로");
+    let chSearch = await buzzk.channel.search("녹두로로");
     console.log(chSearch);
 
 <details>
-<summary>Return 값 보기</summary>
+<summary>return</summary>
+
+ - Return
+	 - 0
+		- channelID
+		- name
+		- description
+		- follower
+		- imageURL
+		- isLive
+	 - 1
+	 - 2
+	 - 3
+	 - ...
+
+</details>
+
+    let channel = await buzzk.channel.get("channelID 값");
+    console.log(channel);
+
+<details>
+<summary>return</summary>
 
  - Return
 	 - channelID
@@ -97,25 +189,27 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 </details>
 
-    await buzzk.channel.followChannel("channelID 값");
+    await buzzk.channel.follow("channelID 값");
 
 >
 
-    await buzzk.channel.unFollowChannel("channelID 값");
+    await buzzk.channel.unFollow("channelID 값");
 
 ---
 
-> live
+###  live
 
-    const lvDetail = await buzzk.live.getLiveDetail("channelID 값");
+    const lvDetail = await buzzk.live.getDetail("channelID 값");
     console.log(lvDetail);
 
 <details>
-<summary>Return 값 보기</summary>
+<summary>return</summary>
 
  - Return
 	 - channelID
 	 - channel
+		 - name
+		 - imageURL
 	 - chatID
 	 - chatLimit //팔로워 전용 채팅 등...
 	 - userCount
@@ -129,11 +223,11 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 </details>
 
-    const lvStatus = await buzzk.live.getLiveStatus("channelID 값");
+    const lvStatus = await buzzk.live.getStatus("channelID 값");
     console.log(lvStatus);
 
 <details>
-<summary>Return 값 보기</summary>
+<summary>return</summary>
 
  - Return
 	 - channelID
@@ -149,7 +243,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 ---
 
-> chat
+###  chat
 
     const buzzkChat = buzzk.chat;
     let chat = new buzzkChat("channelID 값");
@@ -161,7 +255,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
     console.log(recentChat);
 
 <details>
-<summary>Return 값 보기</summary>
+<summary>return</summary>
 
  - Return
 	 - 0
@@ -187,7 +281,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
     });
 
 <details>
-<summary>Return 값 보기</summary>
+<summary>callback</summary>
 
  - Return
 	 - 0
