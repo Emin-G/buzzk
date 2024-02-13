@@ -139,8 +139,7 @@
 
 		chat.onDisconnect(async () => { //채팅창 연결이 끊겼을 때
 			console.log("Reconnect...");
-			chat = new buzzkChat(channel.channelID);
-			await chat.connect();
+        	test();
 			//다시 생성 후 연결 or liveStatus 확인 후 방송중이면 연결
     	});
         
