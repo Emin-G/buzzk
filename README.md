@@ -17,6 +17,10 @@
 
 ##  📖 업데이트 내역
 
+ - live.getDetail 함수의 Return 값에 category 항목 추가
+
+>
+
  - 채팅창 연결이 끊기던 문제 해결 (Ping 추가)
  - 채팅창 ID 변경 시 재연결 구현
 
@@ -27,16 +31,6 @@
  - 함수 이름 수정
 
 	**하단의 1.3.0 마이그레이션 가이드 참고**
-
- - channelID로 채널 정보 가져오기 함수 추가
- - ws 라이브러리 종속성 추가
- - 자동완성 기능 지원
- - 팔로우 / 언팔로우 기능 추가
- - live.getLiveDetail의 Return 값에 chatLimit 추가 (팔로우 대상 채팅 등...)
- - 폴링 함수 추가 (chatID 변경 감지)
- - API 호출 실패 시 오류 핸들링 (Return true / null)
- - chat.disconnect 함수 보완
- - 버전 체크 함수 추가
 
 ##  ✒️ 마이그레이션 가이드 (v.1.3.0)
 
@@ -222,6 +216,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 		 - now
 		 - total
 	 - title
+	 - category
 	 - startOn
 	 - closeOn
 	 - status
