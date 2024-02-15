@@ -17,20 +17,19 @@
 
 ##  📖 업데이트 내역
 
+ - 채팅창 연결이 끊기던 문제 해결 (Ping 추가)
+ - 채팅창 ID 변경 시 재연결 구현
+
+> 
+
  - onDisconnect 함수 추가
  - 채팅에 연결하지 못했던 문제 해결 (UID를 제걸로 해놨던... 빙구...)
-
->
-
  - 함수 이름 수정
 
 	**하단의 1.3.0 마이그레이션 가이드 참고**
 
  - channelID로 채널 정보 가져오기 함수 추가
  - ws 라이브러리 종속성 추가
-
->
-
  - 자동완성 기능 지원
  - 팔로우 / 언팔로우 기능 추가
  - live.getLiveDetail의 Return 값에 chatLimit 추가 (팔로우 대상 채팅 등...)
@@ -138,9 +137,7 @@
         });
 
 		chat.onDisconnect(async () => { //채팅창 연결이 끊겼을 때
-			console.log("Reconnect...");
-        	test();
-			//다시 생성 후 연결 or liveStatus 확인 후 방송중이면 연결
+			//TODO
     	});
         
     }
