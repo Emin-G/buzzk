@@ -17,6 +17,10 @@
 
 ##  📖 업데이트 내역
  
+ - WebSocket is not open 문제 해결
+
+>
+
  - chat.getUserInfo 함수 추가
 
 >
