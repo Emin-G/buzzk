@@ -17,6 +17,8 @@
 
 ##  📖 업데이트 내역
 
+ - onDonation 함수 추가
+
  - 본인 인증 채팅 지원 추가
 
 >
@@ -302,6 +304,34 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
  - Return
 	 - 0
+		 - author
+			 - id
+			 - name
+			 - imageURL
+			 - hasMod //관리 권한을 가졌는지 (false / true)
+		 - message
+		 - time
+	 - 1
+	 - 2
+	 - 3
+	 - ...
+
+</details>
+
+    chat.onDonation((data) => { //도네이션이 왔을 때
+    	console.log(data);
+    
+	    for (let o in data) {
+	        console.log(data[o].amount); //메세지만 전부 꺼내기
+        }
+    });
+
+<details>
+<summary>callback</summary>
+
+ - Return
+	 - 0
+	 	 - amount //후원 금액
 		 - author
 			 - id
 			 - name
