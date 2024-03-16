@@ -322,7 +322,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
     	console.log(data);
     
 	    for (let o in data) {
-	        console.log(data[o].amount); //메세지만 전부 꺼내기
+	        console.log(data[o].amount); //후원 금액만 전부 꺼내기
         }
     });
 
