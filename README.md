@@ -17,6 +17,10 @@
 
 ##  📖 업데이트 내역
 
+ - video 함수 추가
+
+>
+
  - 채팅 채널 연결을 유지하지 못하는 문제 해결
 
 >
@@ -40,10 +44,6 @@
 > 
 
  - User-Agent 추가 (API 호출에 실패하는 문제 해결)
-
-> 
-
- - chat 의 메세지를 핸들링하던 중 의도치 않게 오류가 나는 문제 해결
 
 ##  ✒️ 마이그레이션 가이드 (v.1.2.x -> v.1.3.0)
 
@@ -371,3 +371,53 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 </details>
 
     await chat.disconnect(); //채팅창 연결 끊기
+
+---
+
+###  video
+
+    const videoList = await buzzk.video.getList("channelID 값");
+    console.log(videoList);
+
+<details>
+<summary>return</summary>
+
+ - Return
+	 - 0
+	 	 - no
+		 - id
+		 - title
+		 - category
+		 - duration
+		 - uploadOn
+		 - imageURL
+		 - trailerURL
+	 - 1
+	 - 2
+	 - 3
+	 - ...
+
+</details>
+
+    const video = await buzzk.video.get("no 값"); //videoList 에서 return 된 no 값
+    console.log(video);
+	console.log(video.videoURL[720]);
+
+<details>
+<summary>return</summary>
+
+ - Return
+	 - id
+	 - title
+	 - category
+	 - duration
+	 - uploadOn
+	 - startOn
+	 - imageURL
+	 - trailerURL
+	 - videoURL
+	 	 - 144
+		 - 720
+		 - 1080
+
+</details>
