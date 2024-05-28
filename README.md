@@ -376,7 +376,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 ###  video
 
-    const videoList = await buzzk.video.getList("channelID 값");
+    const videoList = await buzzk.video.getList("channelID 값", 24); //channelID 값, 가져올 갯수
     console.log(videoList);
 
 <details>
