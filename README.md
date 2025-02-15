@@ -42,13 +42,13 @@
 
 ---
 
-| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.channel.followChannel |
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | 추가 |
 |--|--|
 |  | buzzk.oauth.refresh |
 
 ---
 
-| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.channel.unFollowChannel |
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | 추가 |
 |--|--|
 |  | buzzk.channel.resolve |
 
