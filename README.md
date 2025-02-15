@@ -34,6 +34,14 @@
 <details>
 <summary>펼쳐보기</summary>
 
+	buzzk.auth
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | 추가 |
+|--|--|
+|  | buzzk.auth |
+
+---
+
 	buzzk.oauth
 
 | <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | 추가 |
