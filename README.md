@@ -169,7 +169,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 ✅ Official API
 
-    let oauth = await buzzk.oauth.refresh("accessToken 값");
+    let oauth = await buzzk.oauth.refresh("refreshToken 값");
     console.log(oauth);
 
 <details>
