@@ -17,97 +17,51 @@
 
 ##  📖 업데이트 내역
 
- - 채팅 채널 연결을 유지하지 못하는 문제 완벽 해결
+ ### 🎉 2.0 업데이트
+ - 공식 API를 일부 지원하기 시작했어요!
 
->
+> [!CAUTION]
+> 이 버전 이후부터는 공식 API와 비공식 API를 혼용하여 사용합니다.
+> 공식 API로 대체 가능한 기능은 모두 공식 API를 이용할 예정입니다.
 
- - video 함수 추가
+> [!WARNING]
+> * 비공식 API 전용 모듈은 더 이상 지원되지 않습니다.
+> * 비공식 API로만 이루어진 모듈을 사용하시려면
+> `npm install buzzk@1.11.3`
 
->
-
- - 채팅 채널 연결을 유지하지 못하는 문제 해결
-
->
-
- - 채팅 채널이 없을 때 오류가 생기는 문제 해결
-
->
-
- - onDonation 함수 추가
-
- - 본인 인증 채팅 지원 추가
-
->
-
- - 채팅 데이터에 hasMod 항목 추가
-
->
-
- - JSON을 Parse 하는 중 오류가 생기는 문제 해결
-
-> 
-
- - User-Agent 추가 (API 호출에 실패하는 문제 해결)
-
-##  ✒️ 마이그레이션 가이드 (v.1.2.x -> v.1.3.0)
+##  ✒️ 마이그레이션 가이드 (v.1.x -> v.2.0.0)
 
 <details>
 <summary>펼쳐보기</summary>
 
-	buzzk.channel
+	buzzk.oauth
 
-| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.channel.getChannel |
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | 추가 |
 |--|--|
-|  | buzzk.channel.search |
+|  | buzzk.oauth.get |
 
 ---
 
 | <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.channel.followChannel |
 |--|--|
-|  | buzzk.channel.follow |
+|  | buzzk.oauth.refresh |
 
 ---
 
 | <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.channel.unFollowChannel |
 |--|--|
-|  | buzzk.channel.unFollow |
+|  | buzzk.channel.resolve |
 
 ---
 
-	buzzk.live
+	buzzk.channel.get
 
-| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.live.getLiveDetail |
-|--|--|
-|  | buzzk.live.getDetail |
-
----
-
-| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.live.getLiveStatus |
-|--|--|
-|  | buzzk.live.getStatus |
-
----
-
-	buzzk.live.getDetail (getLiveDetail)
-
-| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | (return).channel.channelName |
-|--|--|
-|  | (return).channel.name |
-
----
-
-| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | (return).channel.channelImageUrl |
-|--|--|
-|  | (return).channel.imageURL |
-
----
-
-| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | (return).channel.channelId |
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | (return).channel.description |
 |--|--|
 
 ---
 
-| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | (return).channel.verifiedMark |
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | (return).channel.isLive |
 |--|--|
 
 </details>
@@ -120,6 +74,7 @@
 ##  🔥 빠른. 시작.
 
     const buzzk = require("buzzk");
+	buzzk.auth("ClientID 값", "ClientSecret 값");
     buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
     
     const buzzkChat = buzzk.chat;
@@ -161,6 +116,22 @@
 
 ##  🎀 사용법
 
+###  auth
+
+✅ Official API
+
+    buzzk.auth("ClientID 값", "ClientSecret 값");
+
+https://developers.chzzk.naver.com/application
+네이버 치지직 개발자 센터에서 등록 후 사용 가능합니다.
+✅ Official API 표기가 있는 모든 함수에서 사용됩니다.
+
+dotenv와 함께 사용하는 것을 매우 권장합니다.
+
+    buzzk.auth(process.env.CLIENT_ID, process.env.CLIENT_SECRET);
+
+---
+
 ###  login
 
     buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
@@ -168,6 +139,56 @@
 dotenv와 함께 사용하는 것을 매우 권장합니다.
 
     buzzk.login(process.env.NID_AUT, process.env.NID_SES);
+
+---
+
+###  oauth
+
+✅ Official API
+
+    let oauth = await buzzk.oauth.get("Code 값");
+    console.log(oauth);
+
+<details>
+<summary>return</summary>
+
+ - Return
+	 - access
+	 - refresh
+	 - expireIn
+
+</details>
+
+✅ Official API
+
+    let oauth = await buzzk.oauth.refresh("accessToken 값");
+    console.log(oauth);
+
+<details>
+<summary>return</summary>
+
+ - Return
+	 - access
+	 - refresh
+	 - expireIn
+
+</details>
+
+✅ Official API
+
+    let oauth = await buzzk.oauth.resolve("accessToken 값");
+    console.log(oauth);
+
+<details>
+<summary>return</summary>
+
+ - Return
+	 - channelID
+	 - name
+	 - follower
+	 - imageURL
+
+</details>
 
 ---
 
@@ -194,6 +215,8 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 </details>
 
+✅ Official API
+
     let channel = await buzzk.channel.get("channelID 값");
     console.log(channel);
 
@@ -203,10 +226,8 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
  - Return
 	 - channelID
 	 - name
-	 - description
 	 - follower
 	 - imageURL
-	 - isLive
 
 </details>
 
