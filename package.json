@@ -31,7 +31,6 @@
     "뿌지직"
   ],
   "dependencies": {
-    "socket.io-client": "^4.8.1",
-    "ws": "^8.18.0"
+    "socket.io-client": "^2.0.3"
   }
 }

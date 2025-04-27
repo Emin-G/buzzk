@@ -9,16 +9,13 @@
 <p align="center">
 뿌지직은 치지직 챗봇을 더욱 쉽게 개발할 수 있도록 돕는 비공식 라이브러리 입니다.
 </p>
-<p align="center">
-챗봇 개발에 초점이 맞춰저 있어, 여러 계정에 동시 로그인할 수 없습니다.
-</p>
 
 ---
 
 ##  📖 업데이트 내역
 
- ### 🎉 2.0 업데이트
- - 공식 API를 일부 지원하기 시작했어요!
+ ### 🎉 2.1 업데이트
+ - 공식 API로 거의 대부분의 작업을 대체했어요!
 
 > [!CAUTION]
 > 이 버전 이후부터는 공식 API와 비공식 API를 혼용하여 사용합니다.
@@ -28,6 +25,59 @@
 > * 비공식 API 전용 모듈은 더 이상 지원되지 않습니다.
 > * 비공식 API로만 이루어진 모듈을 사용하시려면
 > `npm install buzzk@1.11.3`
+
+---
+
+##  ✒️ 마이그레이션 가이드 (v.2.0.x -> v.2.1.0)
+
+<details>
+<summary>펼쳐보기</summary>
+
+	buzzkChat
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | new buzzkChat("channelID 값") |
+|--|--|
+|  | new buzzkChat("accessToken 값") |
+
+---
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | 삭제 |
+|--|--|
+|  | (chat).getRecentChat() |
+
+---
+
+	buzzkChat.onMessage
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | 삭제 |
+|--|--|
+|  | (callback).author.imageURL |
+
+---
+
+	buzzkChat.onDonation
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | 삭제 |
+|--|--|
+|  | (callback).author.imageURL |
+
+---
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | 삭제 |
+|--|--|
+|  | (callback).time |
+
+---
+
+	buzzk.live
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | 삭제 |
+|--|--|
+|  | buzzk.live.getAccess() |
+
+</details>
+
+---
 
 ##  ✒️ 마이그레이션 가이드 (v.1.x -> v.2.0.0)
 
@@ -83,36 +133,36 @@
 
     const buzzk = require("buzzk");
 	buzzk.auth("ClientID 값", "ClientSecret 값");
-    buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
+
+    //buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
+	//buzzk.channel.follow, unfollow 시에만 사용.
     
     const buzzkChat = buzzk.chat;
     
     async function test () {
     
-        let chSearch = await buzzk.channel.search("녹두로로"); //채널 검색
-        
-        let channel = chSearch[0]; //검색 결과 첫번째 채널
+		let oauth = buzzk.oauth.get("code 값");
     
-        const lvDetail = await buzzk.live.getDetail(channel.channelID); //현재 방송 정보
-    
-        let chat = new buzzkChat(channel.channelID);
+        let chat = new buzzkChat(oauth.accessToken);
         await chat.connect(); //채팅창 연결
     
-        let recentChat = await chat.getRecentChat(); //최근 채팅 가져오기 (기본값 50개)
-        console.log(recentChat);
-    
         chat.onMessage(async (data) => { //채팅이 왔을 때
-            for (let o in data) {
-                console.log(data[o].message);
+			console.log(data.message);
 
-				if (data[o].message === "!ping") await chat.send("pong!");
-				//채팅 보내기 (login 후에만 가능)
+			if (data.message == "!ping") await chat.send("pong!");
+			//채팅 보내기
 
-				let userInfo = await chat.getUserInfo(data[o].author.id);
-            	console.log(userInfo);
-				//채팅 보낸 유저의 정보
-            }
+			if (data.message == "!공지") await chat.setNotice("테스트!");
+			//채팅 상단 고정 (공지)
+
+			let userInfo = await chat.getUserInfo(data.author.id);
+			console.log(userInfo);
+			//채팅 보낸 유저의 정보
         });
+
+		chat.onDonation(async (data) => { //후원이 왔을 때
+			//TODO
+		});
 
 		chat.onDisconnect(async () => { //채팅창 연결이 끊겼을 때
 			//TODO
@@ -144,6 +194,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
     buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
 
+* 해당 함수는 이제 buzzk.channel.follow, unfollow 시에만 사용됩니다.
 dotenv와 함께 사용하는 것을 매우 권장합니다.
 
     buzzk.login(process.env.NID_AUT, process.env.NID_SES);
@@ -298,94 +349,68 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 ###  chat
 
+✅ Official API
+
     const buzzkChat = buzzk.chat;
-    let chat = new buzzkChat("channelID 값");
+    let chat = new buzzkChat("accessToken 값");
     await chat.connect(); //채팅창 연결
 
 >
 
-    let recentChat = await chat.getRecentChat(갯수); //최근 채팅 가져오기 (기본값 50개)
-    console.log(recentChat);
-
-<details>
-<summary>return</summary>
-
- - Return
-	 - 0
-		 - author
-			 - id
-			 - name
-			 - imageURL
-			 - hasMod //관리 권한을 가졌는지 (false / true)
-		 - message
-		 - time
-	 - 1
-	 - 2
-	 - 3
-	 - ...
-
-</details>
+✅ Official API
 
     chat.onMessage((data) => { //채팅이 왔을 때
     	console.log(data);
-    
-	    for (let o in data) {
-	        console.log(data[o].message); //메세지만 전부 꺼내기
-        }
     });
 
 <details>
 <summary>callback</summary>
 
  - Return
-	 - 0
 		 - author
 			 - id
 			 - name
-			 - imageURL
 			 - hasMod //관리 권한을 가졌는지 (false / true)
 		 - message
+		 - emoji (Object - Key: 이모지 이름, Value: 이미지 URL)
 		 - time
-	 - 1
-	 - 2
-	 - 3
-	 - ...
 
 </details>
+
+>
+
+✅ Official API
 
     chat.onDonation((data) => { //도네이션이 왔을 때
     	console.log(data);
-    
-	    for (let o in data) {
-	        console.log(data[o].amount); //후원 금액만 전부 꺼내기
-        }
     });
 
 <details>
 <summary>callback</summary>
 
  - Return
-	 - 0
-	 	 - amount //후원 금액
-		 - author
-			 - id
-			 - name
-			 - imageURL
-			 - hasMod //관리 권한을 가졌는지 (false / true)
-		 - message
-		 - time
-	 - 1
-	 - 2
-	 - 3
-	 - ...
+	- type //CHAT or VIDEO
+	- amount //후원 금액
+	- author
+		- id
+		- name
+		- hasMod //관리 권한을 가졌는지 (false / true)
+	- message
+	- emoji (Object - Key: 이모지 이름, Value: 이미지 URL)
 
 </details>
+
+>
+
+✅ Official API
 
     chat.onDisconnect(() => { //채팅창 연결이 끊겼을 때
 		//TODO
     });
 
 >
+
+✅ Official API
 
     await chat.send("ㅋㅋㅋㅋㅋㅋ"); //채팅 보내기 (login 후에만 가능)
 
