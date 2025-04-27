@@ -49,6 +49,9 @@
 
 	buzzkChat.onMessage
 
+> 채팅 여러개를 한 번에 받던 구조 (data[o].message) (for 문으로 data[o] 돌리던 구조)에서
+> 채팅 하나 씩 받는 구조로 변경 (data.message)
+
 | <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | 삭제 |
 |--|--|
 |  | (callback).author.imageURL |
