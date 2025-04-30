@@ -146,7 +146,7 @@
     
 		let oauth = buzzk.oauth.get("code 값");
     
-        let chat = new buzzkChat(oauth.accessToken);
+        let chat = new buzzkChat(oauth.access);
         await chat.connect(); //채팅창 연결
     
         chat.onMessage(async (data) => { //채팅이 왔을 때
