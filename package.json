@@ -1,7 +1,7 @@
 {
   "name": "buzzk",
   "displayName": "BUZZK",
-  "version": "2.1.9",
+  "version": "2.2.0",
   "description": "뿌지직 (BUZZK) - 치지직(CHZZK) 챗봇을 더욱 쉽게 개발할 수 있도록 돕는 비공식 라이브러리.",
   "main": "lib/index.js",
   "type": "commonjs",
@@ -31,6 +31,7 @@
     "뿌지직"
   ],
   "dependencies": {
+    "axios": "^1.9.0",
     "socket.io-client": "^2.0.3"
   }
 }
