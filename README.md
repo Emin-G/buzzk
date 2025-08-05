@@ -141,8 +141,8 @@
     const buzzk = require("buzzk");
 	buzzk.auth("ClientID 값", "ClientSecret 값");
 
-    //buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
-	//buzzk.channel.follow, unfollow 시에만 사용.
+    buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
+	//buzzk.live.getDetail, buzzk.channel.follow, unfollow 시에만 사용.
     
     const buzzkChat = buzzk.chat;
     
@@ -201,7 +201,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
     buzzk.login("NID_AUT 쿠키 값", "NID_SES 쿠키 값");
 
-* 해당 함수는 이제 buzzk.channel.follow, unfollow 시에만 사용됩니다.
+* 해당 함수는 이제 buzzk.live.getDetail, buzzk.channel.follow, unfollow 시에만 사용됩니다.
 dotenv와 함께 사용하는 것을 매우 권장합니다.
 
     buzzk.login(process.env.NID_AUT, process.env.NID_SES);
