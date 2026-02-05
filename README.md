@@ -32,6 +32,21 @@
 
 ---
 
+##  ✒️ 마이그레이션 가이드 (v.2.3.x -> v.2.3.8)
+
+<details>
+<summary>펼쳐보기</summary>
+
+	buzzk.oauth
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_change-min.png?raw=true"  alt="BUZZK"  width="70"> | buzzk.oauth.get("Code 값") |
+|--|--|
+|  | buzzk.oauth.get("Code 값", "State 값") |
+
+</details>
+
+---
+
 ##  ✒️ 마이그레이션 가이드 (v.2.0.x -> v.2.1.0)
 
 <details>
@@ -148,7 +163,7 @@
     
     async function test () {
     
-		let oauth = buzzk.oauth.get("code 값");
+		let oauth = buzzk.oauth.get("code 값", "state 값");
     
         let chat = new buzzkChat(oauth.access);
         await chat.connect(); //채팅창 연결
@@ -212,7 +227,7 @@ dotenv와 함께 사용하는 것을 매우 권장합니다.
 
 ✅ Official API
 
-    let oauth = await buzzk.oauth.get("Code 값");
+    let oauth = await buzzk.oauth.get("Code 값", "State 값");
     console.log(oauth);
 
 <details>
