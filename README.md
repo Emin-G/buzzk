@@ -14,21 +14,41 @@
 
 ##  📖 업데이트 내역
 
- ### 🎉 2.2 업데이트
- - 이제 Axios를 사용하여 API를 불러옵니다!
- - 더욱 안정적이고 빠른 성능을 보일 것으로 기대됩니다!
-
- ### 🎉 2.1 업데이트
- - 공식 API로 거의 대부분의 작업을 대체했어요!
+ ### 🎉 2.3.11 업데이트
+ - 이제 사용되지 않는, 작동하지 않는 함수 buzzk.video를 Deprecate 했습니다.
+ - 프로젝트에서 buzzk.video 함수를 사용하셨다면 업데이트 전 모두 제거하시기 바랍니다.
+ - 자세한 사항은 하단의 마이그레이션 가이드를 참고해주세요.
 
 > [!CAUTION]
-> 이 버전 이후부터는 공식 API와 비공식 API를 혼용하여 사용합니다.
+> 현재 버전은 공식 API와 비공식 API를 혼용하여 사용합니다.
 > 공식 API로 대체 가능한 기능은 모두 공식 API를 이용할 예정입니다.
 
 > [!WARNING]
 > * 비공식 API 전용 모듈은 더 이상 지원되지 않습니다.
 > * 비공식 API로만 이루어진 모듈을 사용하시려면
 > `npm install buzzk@1.11.3`
+> * (지원되지 않음 / 권장되지 않음)
+
+---
+
+##  ✒️ 마이그레이션 가이드 (v.2.3.x -> v.2.3.11)
+
+<details>
+<summary>펼쳐보기</summary>
+
+	buzzk.video
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | 삭제 |
+|--|--|
+|  | buzzk.video.getList(channelID, size) |
+
+---
+
+| <img src="https://github.com/Emin-G/Img/blob/main/tags/tag_delete-min.png?raw=true"  alt="BUZZK"  width="70"> | 삭제 |
+|--|--|
+|  | buzzk.video.get(no) |
+
+</details>
 
 ---
 
